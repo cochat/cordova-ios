@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "Cordova"
-  s.version               = "3.8.0"
+  s.version               = "3.8.x"
   s.summary               = "Apache Cordova is a platform for building native mobile applications using HTML, CSS and JavaScript."
   s.homepage              = "https://github.com/ruaho/cordova-ios"
   s.author                = "Original developed by Nitobi (acquire by Adobe) and all other PhoneGap and Cordova Contributors"
