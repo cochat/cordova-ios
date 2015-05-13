@@ -43,6 +43,47 @@
     return self;
 }
 
+//modified cordova-ios 3.8
+- (NSString*)wwwFolderName
+{
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentwww = [NSString stringWithFormat:@"%@/www",[searchPaths objectAtIndex:0]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:documentwww]) {
+        return documentwww;
+    } else {
+        return @"www";
+    }
+
+}
+
+- (NSString*) pathForResource:(NSString*)resourcepath
+{
+    NSBundle* mainBundle           = [NSBundle mainBundle];
+    NSMutableArray* directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
+    NSString* filename             = [directoryParts lastObject];
+    
+    [directoryParts removeLastObject];
+    
+    NSString* directoryPartsJoined = [directoryParts componentsJoinedByString:@"/"];
+    NSString* directoryStr         = [self wwwFolderName];
+    
+    if ([directoryPartsJoined length] > 0)
+    {
+        directoryStr = [NSString stringWithFormat:@"%@/%@", [self wwwFolderName], [directoryParts componentsJoinedByString:@"/"]];
+    }
+    
+    NSLog(@"default path %@",directoryStr);
+    
+    if (![[self wwwFolderName] isEqualToString:@"www"])
+    {
+        return [NSString stringWithFormat:@"%@/%@",[self wwwFolderName],@"index.html"];
+    }
+    
+    return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
+}
+
+/*
+
 - (NSString*)pathForResource:(NSString*)resourcepath
 {
     NSBundle* mainBundle = [NSBundle mainBundle];
@@ -60,7 +101,7 @@
 
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
 }
-
+*/
 - (void)flushCommandQueueWithDelayedJs
 {
     _delayResponses = YES;
