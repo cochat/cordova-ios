@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name                  = "Cordova"
+  s.name                  = "RuahoCordova"
   s.version               = "3.8.x"
   s.summary               = "Apache Cordova is a platform for building native mobile applications using HTML, CSS and JavaScript."
   s.homepage              = "https://github.com/ruaho/cordova-ios"
