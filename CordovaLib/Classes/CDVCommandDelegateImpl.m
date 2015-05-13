@@ -44,7 +44,7 @@
 }
 
 
-
+//modified cordova-4.0
 - (NSString*)wwwFolderName
 {
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
