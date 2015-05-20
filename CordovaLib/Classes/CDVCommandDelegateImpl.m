@@ -46,6 +46,7 @@
 //modified cordova-ios 3.8
 - (NSString*)wwwFolderName
 {
+/*  
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentwww = [NSString stringWithFormat:@"%@/www",[searchPaths objectAtIndex:0]];
     if ([[NSFileManager defaultManager] fileExistsAtPath:documentwww]) {
@@ -53,8 +54,21 @@
     } else {
         return @"www";
     }
-
+ */
+    
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString* userDefaultPath = [userDefaults objectForKey:@"USER_DEFAULT_WEBAPP_PATH"];
+    if (nil == userDefaultPath || [userDefaultPath isEqualToString:@"true"]) {
+          return @"www";
+    } else {
+        NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentwww = [NSString stringWithFormat:@"%@/www",[searchPaths objectAtIndex:0]];
+        return documentwww;
+    }
+    
 }
+
+
 
 - (NSString*) pathForResource:(NSString*)resourcepath
 {
