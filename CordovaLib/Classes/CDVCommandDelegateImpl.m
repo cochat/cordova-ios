@@ -90,7 +90,7 @@
     
     if (![[self wwwFolderName] isEqualToString:@"www"])
     {
-        return [NSString stringWithFormat:@"%@/%@",[self wwwFolderName],@"index.html"];
+        return [NSString stringWithFormat:@"%@/%@",[self wwwFolderName], resourcepath];
     }
     
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
